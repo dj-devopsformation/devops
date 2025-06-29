@@ -1,0 +1,217 @@
+/* Global Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff;
+    color: #222;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.presentation-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.slide {
+    display: none;
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    text-align: center;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    overflow-y: auto;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.slide.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #222;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 600;
+    text-shadow: none;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #444;
+    font-weight: 600;
+}
+
+.slide-header {
+    border-bottom: 4px solid #3498db;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.slide-title {
+    font-size: 2.2em;
+    color: #3498db;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.slide-subtitle, .subtitle {
+    font-size: 1.2em;
+    color: #666;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.objectives, .highlight-box, .architecture-box, .tp-section, .content-section, .step-box, .success-box, .warning-box, .tip-box {
+    background: #f8f9fa;
+    color: #222;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border-left: 4px solid #3498db;
+}
+
+.objectives h3, .highlight-box h3, .architecture-box h3, .tp-section h4, .content-section h3, .step-box h4, .success-box h3, .warning-box h4, .tip-box h4 {
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.objectives ul, .objectives-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.objectives li, .objectives-list li {
+    margin: 10px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.objectives li:before, .objectives-list li:before {
+    content: "✓ ";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.code-block, pre, code {
+    background: #f4f4f4;
+    color: #222;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin: 15px 0;
+    text-align: left;
+    overflow-x: auto;
+    border-left: 4px solid #3498db;
+}
+
+.navigation {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.nav-btn, .nav-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+}
+
+.nav-btn:hover, .nav-button:hover {
+    background: #217dbb;
+    transform: translateY(-2px);
+}
+
+.nav-btn:disabled, .nav-button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.slide-counter {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #f4f4f4;
+    color: #3498db;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.slide-logo {
+    max-width: 180px;
+    max-height: 180px;
+    margin-bottom: 24px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slide {
+        padding: 20px;
+        margin: 10px;
+        height: auto;
+    }
+    .slide-title {
+        font-size: 1.5em;
+    }
+    .slide-header {
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+} 
