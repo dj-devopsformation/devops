@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  devop_app:
+    container_name: devop_app_test
+    build: .
+    ports:
+      - "9000:80"
+    volumes:
+      - data:/home/
+    restart: always
+    networks:
+      - devop_net
+  jenkins:
+    build: /jenkins/.
+    container_name: jenkins
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped 
+
+
+volumes:
+  data:
+  jenkins_home:
+
+networks: 
+ devop_net:
