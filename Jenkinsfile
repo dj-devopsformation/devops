@@ -8,11 +8,11 @@ pipeline {
             }
         }
 
-        // stage('Build') {
-        //     steps {
-        //         sh 'docker build -t my-app:latest .'
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                sh 'docker build -t my-app:latest .'
+            }
+        }
 
         stage('Test') {
             steps {
