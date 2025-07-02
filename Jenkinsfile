@@ -12,7 +12,7 @@ environment {
 
         stage('Build') {
             steps {
-                echo "build docker image test"
+                echo "build docker image test 1234567987"
             }
         }
 
