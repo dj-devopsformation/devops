@@ -19,7 +19,17 @@ services:
     ports:
      - "8080:8080"
      - "50000:50000"
-    
+  
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    networks:
+      - devops_net
+    ports:
+      - 9090:9090
+
+
 
 
 volumes: 

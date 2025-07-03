@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-deployment
+  labels:
+    app: devops
+spec:
+  replicas: 6  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: devops
+  template:
+    metadata:
+      labels:
+        app: devops
+    spec:
+      containers:
+        - name: devops-cont
+          image: farouk1616/devops  # Replace with your image
+          ports:
+            - containerPort: 80
