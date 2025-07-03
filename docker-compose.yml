@@ -2,15 +2,28 @@ version: '3.3'
 
 services:
   devop_app:
-    container_name: devop_app_test
     build: .
     ports:
       - "9000:80"
     volumes:
       - data:/home/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     restart: always
     networks:
       - devop_net
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx_exporter
+    ports:
+      - "9113:9113"
+    command:
+      - '--nginx.scrape-uri=http://devop_app:80/nginx_status'
+    depends_on:
+      - devop_app
+    networks:
+      - devop_net
+
   jenkins:
     build: /jenkins/.
     container_name: jenkins
@@ -23,6 +36,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped 
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    networks:
+      - devop_net
+    ports:
+      - 9090:9090
 
 volumes:
   data:
