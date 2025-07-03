@@ -27,7 +27,7 @@ services:
     networks:
       - devops_net
     ports:
-      - 9090:9090
+      - 9099:9090
 
 
 
