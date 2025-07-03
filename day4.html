@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation DevOps - Monitoring & DevSecOps</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">1/5</div>
+
+        <!-- Slide 0: Page de titre -->
+        <div class="slide active title-slide">
+            <img src="imgs/devops.png" class="slide-logo" alt="DevOps Logo">
+            <h1>Formation DevOps - Jour 4</h1>
+            <h1 style="margin: auto; font-size: 2.5em; text-align: center;">Introduction à Kubernetes et Gestion des Déploiements</h1>
+            <h2>Présenté par DERNANE DJILALI</h2>
+            <p class="subtitle">du 29/06 au 03/07</p>
+        </div>
+
+        <div class="slide">
+            <h2>Les Applications monolithiques</h2>
+            <div class="split-screen">
+                <img src="imgs/632370_b33234fa6723401eb8b295095ca4f58a~mv2.avif" height="400"/>
+            </div>
+            <h3 style="text-align: center; color: #666; margin-top: 20px; font-size: 1.2em;">
+                Architecture monolithique : Une seule application qui gère toutes les fonctionnalités
+            </h3>
+        </div>
+
+
+        <div class="slide">
+            <h2>Architecture Microservices et Multi-Conteneurs</h2>
+            <div class="split-screen">
+                <img src="imgs/0_kGBVHx9eN8cS4oEa.png" height="400"/>
+            </div>
+            <h3 style="text-align: center; color: #666; margin-top: 20px; font-size: 1.2em;">
+                Architecture microservices : Services indépendants communiquant via API
+            </h3>
+        </div>
+
+        <div class="slide">
+            <h2>Problèmes des Multi-Conteneurs</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Déploiement manuel de chaque conteneur</li>
+                      
+                        <li>Détection difficile des pannes</li>
+                        <li>Récupération manuelle des services</li>
+                        <li>Debugging complexe multi-conteneurs</li>
+
+                   
+                        <li>Répartition de charge manuelle</li>
+                     
+
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/docker-compose.png" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>La Problématique d'Orchestration</h2>
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 100%; margin-top:70px">
+                    <div style="background: rgba(52, 152, 219, 0.1); padding: 25px; border-radius: 12px; border-left: 4px solid #3498db; margin: auto">
+                        <p style="font-size: 1.3em; line-height: 1.6; margin-bottom: 20px; font-style: italic; color: #2c3e50;">
+                            "Docker simplifie le déploiement, mais ne suffit pas pour gérer des centaines de conteneurs microservices. Comment orchestrer tout cela efficacement ?"
+                        </p>
+                    </div>
+                 
+                </div>
+       
+        </div>
+
+
+        <div class="slide">
+            <h2>Kubernetes</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>plateforme open-source conçue pour automatiser le déploiement, la mise à l'échelle et la gestion des applications conteneurisées.</li>
+                      
+                        <li>Orchestrer et gérer des conteneurs à grande échelle.</li>
+                        <li>Assurer la haute disponibilité des applications.</li>
+                        <li>Automatiser la mise à l'échelle et la reprise sur incident.</li>
+
+                   
+                        <li>Répartition de charge manuelle</li>
+                     
+
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/0HhNox3.png" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Les Composants Kubernetes</h2>
+            <div style="display: flex; flex-direction: column; gap: 30px; padding: 20px;">
+                <div style="background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">🖥️ Node → héberge les Pods</h3>
+                    <p style="font-size: 1.1em; line-height: 1.5; margin: 0;">
+                        Machine (physique ou virtuelle) qui exécute les applications.<br>
+                        Un cluster Kubernetes est composé de plusieurs nodes.
+                    </p>
+                </div>
+                
+                <div style="background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #2ecc71;">
+                    <h3 style="color: #2ecc71; margin-bottom: 10px;">📦 Pod → contient les conteneurs</h3>
+                    <p style="font-size: 1.1em; line-height: 1.5; margin: 0;">
+                        Plus petite unité de déploiement.<br>
+                        Un pod peut contenir un ou plusieurs conteneurs qui partagent le même réseau et stockage.
+                    </p>
+                </div>
+                
+                <div style="background: rgba(155, 89, 182, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">🌐 Service → expose les Pods</h3>
+                    <p style="font-size: 1.1em; line-height: 1.5; margin: 0;">
+                        Permet d'accéder aux Pods via une adresse IP stable.<br>
+                        Assure l'équilibrage de charge et la communication interne/externe.
+                    </p>
+                </div>
+                
+                <div style="background: rgba(230, 126, 34, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #e67e22;">
+                    <h3 style="color: #e67e22; margin-bottom: 10px;">🔁 Deployment → gère le déploiement et l'évolution</h3>
+                    <p style="font-size: 1.1em; line-height: 1.5; margin: 0;">
+                        Automatisation de la création, mise à l'échelle et mise à jour des Pods.<br>
+                        Supporte les rolling updates et les rollbacks pour des mises à jour sans interruption.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Architecture Kubernetes </h2>
+            <div class="split-screen">
+                <img src="imgs/kubernetes.webp" height="400"/>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Minikube vs kubectl </h2>
+            <div class="split-screen" style="display: flex; width: 100%">
+                <img src="imgs/1_quOjlrpH0vSccfGm-bJ19A.webp" height="400"/>
+                <img src="imgs/1_IGwhIq7BmCkfVA-7JroB7g.webp" height="400"/>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Format de Déploiement Kubernetes</h2>
+            <div class="split-screen">
+                <img src="imgs/maxresdefault.jpg" height="400"/>
+            </div>
+            
+        </div>
+
+        <div class="slide">
+            <h2>Service YAML</h2>
+            <div class="split-screen">
+                <img src="imgs/Screenshotfrom20221116013104.png" height="400"/>
+            </div>
+            
+        </div>
+
+        <div class="slide">
+            <h2>kubectl Commandes</h2>
+            <div style="display: flex; gap: 40px; padding: 20px;">
+                <div style="flex: 1; background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 15px;">📋 Commandes de Base</h3>
+                    <ul style="font-size: 1.1em; line-height: 1.8;">
+                        <li><code>kubectl get pods</code> - Lister les pods</li>
+                        <li><code>kubectl get services</code> - Lister les services</li>
+                        <li><code>kubectl get deployments</code> - Lister les déploiements</li>
+                        <li><code>kubectl get nodes</code> - Lister les nodes</li>
+                        <li><code>kubectl describe pod [nom]</code> - Détails d'un pod</li>
+                    </ul>
+                </div>
+                
+                <div style="flex: 1; background: rgba(46, 204, 113, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #2ecc71;">
+                    <h3 style="color: #2ecc71; margin-bottom: 15px;">🚀 Commandes de Déploiement</h3>
+                    <ul style="font-size: 1.1em; line-height: 1.8;">
+                        <li><code>kubectl apply -f fichier.yaml</code> - Appliquer un fichier</li>
+                        <li><code>kubectl create deployment [nom] --image=[image]</code> - Créer un déploiement</li>
+                        <li><code>kubectl scale deployment [nom] --replicas=3</code> - Mettre à l'échelle</li>
+                        <li><code>kubectl rollout status deployment/[nom]</code> - Statut du déploiement</li>
+                        <li><code>kubectl rollout undo deployment/[nom]</code> - Annuler un déploiement</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; background: rgba(155, 89, 182, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #9b59b6;">
+                <h3 style="color: #9b59b6; margin-bottom: 15px;">🔧 Commandes de Debug</h3>
+                <div style="display: flex; gap: 40px;">
+                    <div style="flex: 1;">
+                        <ul style="font-size: 1.1em; line-height: 1.8;">
+                            <li><code>kubectl logs [pod]</code> - Voir les logs</li>
+                            <li><code>kubectl exec -it [pod] -- /bin/bash</code> - Accès shell</li>
+                            <li><code>kubectl port-forward [pod] 8080:80</code> - Port forwarding</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1;">
+                        <ul style="font-size: 1.1em; line-height: 1.8;">
+                            <li><code>kubectl get events</code> - Voir les événements</li>
+                            <li><code>kubectl top pods</code> - Utilisation des ressources</li>
+                            <li><code>kubectl config view</code> - Configuration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2> HPA</h2>
+            <div >
+                <img src="imgs/maxresdefault.jpg" height="400"/>
+                
+            </div>
+        </div>
+
+
+        <!-- Thank You / Questions Slide at the very end -->
+        <div class="slide">
+            <div style="display:flex; align-items: center; flex-direction: column; justify-content: center; height: 100%">
+                <h1 style="font-size: 3em; color: #3498db; margin-bottom: 30px;">Thank You!</h1>
+                <h2 style="font-size: 2em; color: #222; margin-bottom: 20px;">Questions?</h2>
+                <p style="font-size: 1.3em; color: #666;">N'hésitez pas à poser vos questions ou à demander des clarifications.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Précédent</button>
+        <button class="nav-btn" onclick="nextSlide()">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update navigation buttons
+            document.querySelector('.navigation button:first-child').disabled = currentSlide === 0;
+            document.querySelector('.navigation button:last-child').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

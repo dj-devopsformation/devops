@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation DevOps - Jour 5 : Projet Final CI/CD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="presentation-container">
+        <!-- Slide 0: Page de titre -->
+        <div class="slide active title-slide">
+            <img src="imgs/devops.png" class="slide-logo" alt="DevOps Logo">
+            <h1>Formation DevOps - Jour 5</h1>
+            <h1 style="margin: auto; font-size: 2.5em; text-align: center;">Supervision et Monitoring avec Grafana & Prometheus</h1>
+            <h2>Présenté par DERNANE DJILALI</h2>
+        </div>
+
+        
+        <div class="slide">
+            <h2>Introduction à la supervision</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Surveiller en temps réel l'état des systèmes, des applications et des infrastructures IT.</li>
+                        <li>Collecter et analyser des métriques (CPU, mémoire, réseau, disponibilité…).</li>
+                        <li>Détecter les anomalies, pannes ou dégradations de performance.</li>
+                        <li>Alerter rapidement en cas de problème.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/graph-1-1.jpg" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide">
+            <h2>Présentation de Prometheus</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Outil open-source de monitoring et d'alerting.</li>
+                        <li>Fonctionne par scraping des métriques à intervalles réguliers.                        </li>
+                        <li>Stocke des time series (séries temporelles). <br/>
+                            <Nom de la métrique> + {labels} + valeur + timestamp                            </li>
+                        <li>Alerter rapidement en cas de problème.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/1_ru5TRX06wPxuqki6MDf-yg.png" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+        
+        <div class="slide">
+            <h2>Architecture de Prometheus</h2>
+            <div class="split-screen">
+                <img src="imgs/prometheus-architecture-a119718f561df181406e112e6174d907.svg" height="400"/>
+            </div>
+           
+        </div>
+
+        <div class="slide">
+            <h2>Concepts clés de Prometheus</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Métriques : counter, gauge, histogram, summary.</li>
+                        <li>Targets : Les endpoints à surveiller.</li>
+                        <li>Jobs : Groupement logique des targets.</li>
+                        <li>PromQL : Langage de requête.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/1_ru5TRX06wPxuqki6MDf-yg.png" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide">
+            <h2>Grafana</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Outil de visualisation des données.</li>
+                        <li>Supporte plusieurs sources de données (Prometheus, Loki, InfluxDB…).</li>
+                        <li>Permet de créer :</li>
+                        <li>Dashboards</li>
+                        <li>Graphiques</li>
+                        <li>Tableaux</li>
+                        <li>Alertes visuelles</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/que-es-grafana-1.png" alt="Problèmes Multi-Conteneurs" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Architecture Grafana</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Sources de données : Prometheus, MySQL, Elasticsearch, etc.</li>
+                        <li>Dashboards : Composés de panels et variables.</li>
+                        <li>Alerting : Notifications par email, Slack, etc.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/que-es-grafana-1.png" alt="Architecture Grafana" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Intégration Prometheus & Grafana</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <ul style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        <li>Ajouter Prometheus comme source dans Grafana.</li>
+                        <li>Créer des dashboards avec des panels liés aux métriques PromQL.</li>
+                        <li>Configurer des alertes.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/" alt="Intégration Prometheus & Grafana" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Thank You / Questions Slide at the very end -->
+        <div class="slide">
+            <div style="display:flex; align-items: center; flex-direction: column; justify-content: center; height: 100%">
+                <h1 style="font-size: 3em; color: #3498db; margin-bottom: 30px;">Thank You!</h1>
+                <h2 style="font-size: 2em; color: #222; margin-bottom: 20px;">Questions?</h2>
+                <p style="font-size: 1.3em; color: #666;">N'hésitez pas à poser vos questions ou à demander des clarifications.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Précédent</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function changeSlide(direction) {
+            if (direction === 1 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (direction === -1 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
