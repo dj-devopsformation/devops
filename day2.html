@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐳 Docker & CI/CD - Jour 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">22</span>
+        </div>
+
+        <!-- Slide 0: Page de titre -->
+        <div class="slide active title-slide">
+            <img src="imgs/devops.png" class="slide-logo" alt="DevOps Logo">
+            <h1>Formation DevOps - Jour 2</h1>
+            <h1 style="margin: auto; font-size: 2.5em; text-align: center;">Conteneurisation avec Docker</h1>
+            <h2>Présenté par DERNANE DJILALI</h2>
+            <p class="subtitle">Conteneurisation avec Docker & CI/CD<br>du 29/06 au 03/07</p>
+        </div>
+        <div class="slide">
+            <h2>Conteneurisation</h2>
+            <h3 class="quote">
+                La conteneurisation est une technologie qui permet d'isoler et d'exécuter des applications avec toutes leurs dépendances dans un environnement léger et portable appelé "conteneur".
+            </h3>
+            <ul style="margin-top: 30px; margin-left: 40px; font-size: 1.2em; line-height: 1.7; max-width: 600px; text-align: left">
+                <li>✅ Standardisation des environnements (développement, test, production)</li>
+                <li>✅ Déploiement rapide et simplifié</li>
+                <li>✅ Isolation des applications</li>
+                <li>✅ Utilisation optimisée des ressources système (par rapport aux machines virtuelles)</li>
+            </ul>
+        </div>
+        
+        <div class="slide">
+            <h2>Outils de Conteneurisation</h2>
+            <div style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; margin-top: 40px;">
+                <div style="flex: 1; text-align: left;">
+                    <h3 style="color: #3498db; margin-bottom: 20px;">🔧 Outils Principaux</h3>
+                    <ul style="font-size: 1.2em; line-height: 1.7;">
+                        <li><strong>Docker</strong> - Plateforme de conteneurisation la plus populaire</li>
+                        <li><strong>Podman</strong> - Alternative open source à Docker</li>
+                        <li><strong>containerd</strong> - Runtime de conteneurs par CNCF</li>
+                        <li><strong>LXC/LXD</strong> - Conteneurs système Linux</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; text-align: left;">
+                    <h3 style="color: #3498db; margin-bottom: 20px;">📦 Registres d'Images</h3>
+                    <ul style="font-size: 1.2em; line-height: 1.7;">
+                        <li><strong>Docker Hub</strong> - Registre public officiel Docker</li>
+                        <li><strong>Harbor</strong> - Registre privé open source par VMware</li>
+                        <li><strong>Azure Container Registry</strong> - Service Microsoft</li>
+                        <li><strong>Amazon ECR</strong> - Service AWS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 1: Page de titre -->
+        <div class="slide">
+            <h2>Docker</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <ul style="flex:1; font-size: 1.2rem; text-align: left; max-width: 400px;">
+                    <li>plateforme de conteneurisation qui permet d'empaqueter une application et ses dépendances dans un conteneur léger et portable.</li>
+                    <li>Performance : Plus léger et plus rapide que les VM.</li>
+                    <li>Portabilité : Fonctionne partout, sans modification.</li>
+                    <li>Scalabilité : Déploiement rapide et facile à étendre.</li>
+                </ul>
+                <div style="flex:1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/docker.svg" alt="Mur entre Dev et Ops" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide">
+            <h2>Docker vs Virtualisation Traditionnelle</h2>
+            <div class="split-screen">
+                <img src="imgs/Docke-vs-VM.png" height="300"/>
+            </div>
+            <h3>
+                "Les conteneurs offrent rapidité, légèreté et cohérence."
+            </h3>
+        </div>
+
+        <div class="slide">
+            <h2>Architecture Docker</h2>
+            <div class="split-screen">
+                <img src="imgs/docker-architecture-609x270.webp" height="300"/>
+            </div>
+           
+        </div>
+
+        <div class="slide">
+            <h2>DockerFile, Docker Image, et Docker Container</h2>
+            <div class="split-screen">
+                <img src="imgs/unnamed.png" height="300"/>
+            </div>
+           
+        </div>
+
+        <div class="slide">
+            <h2>Dockerfile</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex:1; font-size: 1.2rem; text-align: left; max-width: 400px;">
+                    <p style="margin-bottom: 20px;">Un fichier texte contenant les instructions pour construire une image Docker automatiquement.</p>
+                    <h3 style="color: #3498db; margin-bottom: 15px;">Instructions Principales</h3>
+                    <ul style="font-size: 1.1em; line-height: 1.6;">
+                        <li><strong>FROM</strong> : Image de base</li>
+                        <li><strong>RUN</strong> : Exécuter des commandes</li>
+                        <li><strong>COPY/ADD</strong> : Copier des fichiers</li>
+                        <li><strong>WORKDIR</strong> : Répertoire de travail</li>
+                        <li><strong>EXPOSE</strong> : Exposer des ports</li>
+                        <li><strong>CMD/ENTRYPOINT</strong> : Commande d'exécution</li>
+                    </ul>
+                </div>
+                <div style="flex:1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/1_wDC9bAk_EJP4D_6pU5VNgQ.png" alt="Dockerfile Example" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide">
+            <h2></h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <div style="flex:1; font-size: 1.2rem; text-align: left; max-width: 400px;">
+                    <p style="margin-bottom: 20px;">Un fichier texte contenant les instructions pour construire une image Docker automatiquement.</p>
+                    <h3 style="color: #3498db; margin-bottom: 15px;">Instructions Principales</h3>
+                    <ul style="font-size: 1.1em; line-height: 1.6;">
+                        <li><strong>FROM</strong> : Image de base</li>
+                        <li><strong>RUN</strong> : Exécuter des commandes</li>
+                        <li><strong>COPY/ADD</strong> : Copier des fichiers</li>
+                        <li><strong>WORKDIR</strong> : Répertoire de travail</li>
+                        <li><strong>EXPOSE</strong> : Exposer des ports</li>
+                        <li><strong>CMD/ENTRYPOINT</strong> : Commande d'exécution</li>
+                    </ul>
+                </div>
+                <div style="flex:1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/1_wDC9bAk_EJP4D_6pU5VNgQ.png" alt="Dockerfile Example" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+
+         <div class="slide">
+            <h2>Commandes</h2>
+            <div class="split-screen">
+                <img src="imgs/dockercheatsheet8.png" height="400" width="600"/>
+            </div>
+           
+        </div>
+
+        <div class="slide">
+            <h2>Volumes</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <ul style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <li><strong>Les volumes Docker permettent de persister les données</strong> même si le conteneur est supprimé.</li>
+                    <li><strong>Commandes utiles :</strong></li> <br/>
+                    <ul>
+                        <li><code>docker volume create nom_volume</code></li>
+                        <li><code>docker run -v nom_volume:/app/data image</code></li>
+                        <li><code>docker volume ls</code></li>
+                    </ul>
+                </ul>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/docker-volumes.png" alt="Docker Volumes" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>Réseaux</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <ul style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <li><strong>Docker crée des réseaux virtuels</strong> pour connecter les conteneurs entre eux.</li>
+                    <li><strong>Types :</strong> bridge (par défaut), host, none, overlay (multi-host).</li>
+                    <li><strong>Commandes utiles :</strong></li> <br/>
+                    <ul>
+                        <li><code>docker network ls</code></li>
+                        <li><code>docker network create mon_reseau</code></li>
+                        <li><code>docker run --network=mon_reseau image</code></li>
+                    </ul>
+                </ul>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/docker-network.png" alt="Docker Networks" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Gestion des Registres Docker</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <ul style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <li><strong>Docker Hub :</strong> registre public pour partager vos images.</li>
+                    <li><strong>Registres privés :</strong> Azure Container Registry, Amazon ECR, Harbor, etc.</li>
+                    <li><strong>Commandes utiles :</strong></li>
+                    <ul>
+                        <li><code>docker login</code> : se connecter au registre</li>
+                        <li><code>docker push mon_image</code> : publier une image</li>
+                        <li><code>docker pull mon_image</code> : récupérer une image</li>
+                    </ul>
+                </ul>
+                <div style="flex: 1; flex-direction: column; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/dockerhub.png" alt="Docker Registry" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: contain;">
+                    <img src="imgs/harbor.jpg" alt="Docker Registry" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="slide">
+            <h2>Docker Compose</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; min-height: 60vh;">
+                <ul style="flex: 1; font-size: 1.2rem; text-align: left; max-width: 500px;">
+                    <li><strong>Docker Compose</strong> permet de gérer plusieurs conteneurs dans un fichier unique <code>docker-compose.yml</code>.</li>
+                    <li><strong>Commandes utiles :</strong></li> <br/>
+                    <ul>
+                        <li><code>docker-compose up</code> : démarrer l'application</li>
+                        <li><code>docker-compose up -d --build</code> : démarrer en arrière-plan avec reconstruction des images</li>
+                        <li><code>docker-compose down</code> : arrêter et supprimer les conteneurs</li>
+                    </ul>
+                 
+    
+                </ul>
+                <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                    <img src="imgs/docker-compose.png" alt="Docker Compose" style="max-width: 500px; width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); object-fit: cover;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Thank You / Questions Slide at the very end -->
+        <div class="slide">
+            <div style="display:flex; align-items: center; flex-direction: column; justify-content: center; height: 100%">
+                <h1 style="font-size: 3em; color: #3498db; margin-bottom: 30px;">Thank You!</h1>
+                <h2 style="font-size: 2em; color: #222; margin-bottom: 20px;">Questions?</h2>
+                <p style="font-size: 1.3em; color: #666;">N'hésitez pas à poser vos questions ou à demander des clarifications.</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()" id="prev-btn">← Précédent</button>
+            <button class="nav-btn" onclick="nextSlide()" id="next-btn">Suivant →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Mettre à jour le compteur
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Mettre à jour le compteur
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Mettre à jour les boutons
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Navigation clavier
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+        
+        // Initialisation
+        showSlide(0);
+    </script>
+</body>
+</html>
